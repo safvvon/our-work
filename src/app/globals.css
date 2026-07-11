@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #153c0a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5CFF3D;
+}
+
+/* Neon Green Glow Utility */
+.glow-green {
+  box-shadow: 0 0 25px rgba(92, 255, 61, 0.4);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(92, 255, 61, 0.5);
+}
+
+.glow-panel {
+  border: 1px solid rgba(92, 255, 61, 0.1);
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+}
+
+/* Film roll perforations */
+.film-sprocket-holes-left {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 6px,
+    #050505 6px,
+    #050505 14px
+  );
+  background-size: 8px 20px;
+}
+
+.film-sprocket-holes-right {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 6px,
+    #050505 6px,
+    #050505 14px
+  );
+  background-size: 8px 20px;
+}
+
+/* Laptop reflection overlay */
+.laptop-reflection {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Floating Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotateX(-1deg);
+  }
+}
+
+@keyframes shadowPulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
