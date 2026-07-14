@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
             <div className="w-5 h-5 border-2 border-neonGreen flex items-center justify-center">
               <div className="w-2 h-2 bg-neonGreen group-hover:scale-125 transition-transform duration-300" />
             </div>
-            <span className="font-mono text-base font-black tracking-wider uppercase text-white">
-              GREEN<span className="text-neonGreen">FRAME</span>
+            <span className="font-neuropol text-base font-bold tracking-widest uppercase text-white">
+              INTELLEX
             </span>
           </Link>
           <p className="text-white/40 text-sm leading-relaxed max-w-xs">
@@ -116,10 +116,10 @@ export const Footer: React.FC = () => {
               href="/contact"
               className="hover:text-neonGreen transition-colors duration-200 cursor-pointer"
             >
-              hello@greenframe.studio
+              hello@intellex.studio
             </Link>
             <span>+1 (213) 456-7890</span>
-            <span>www.greenframe.studio</span>
+            <span>www.intellex.studio</span>
             <span>Los Angeles, CA</span>
           </div>
         </div>
@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
 
       {/* Copyright */}
       <div className="max-w-7xl mx-auto border-t border-white/[0.04] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/30 font-mono">
-        <span>© {new Date().getFullYear()} GreenFrame Studio. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Intellex. All rights reserved.</span>
         <div className="flex items-center gap-6">
           <a href="#" className="hover:text-neonGreen transition-colors">
             Privacy Policy

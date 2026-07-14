@@ -1,65 +1,140 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
-    { name: "Meet Team", path: "/team" },
-    { name: "Our Works", path: "/works" },
-    { name: "Contact Us", path: "/contact" },
+  const leftNavItems = [
+    { name: "Our Work", path: "/works" },
+    { name: "Technology", path: "/#services" },
+  ];
+
+  const rightNavItems = [
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const allNavItems = [
+    { name: "Our Work", path: "/works" },
+    { name: "Technology", path: "/#services" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-b border-white/[0.03] bg-[#050505]/70 backdrop-blur-md px-6 md:px-12 py-5 flex items-center justify-between">
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-        <div className="w-6 h-6 border-2 border-neonGreen flex items-center justify-center relative overflow-hidden">
-          <div className="w-2.5 h-2.5 bg-neonGreen transition-transform duration-300 group-hover:scale-125" />
-        </div>
-        <span className="font-mono text-lg font-black tracking-wider uppercase select-none">
-          GREEN<span className="text-neonGreen">FRAME</span>
-        </span>
-      </Link>
+    <>
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl font-sans select-none pointer-events-auto">
+        {/* Main Glass Capsule Wrapper */}
+        <div className="glass-capsule rounded-full py-3.5 px-6 md:px-8 flex items-center justify-between relative overflow-visible">
+          
+          {/* Backlight glow behind the center logo (only on desktop where center is middle) */}
+          <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 nav-backlight" />
 
-      {/* Navigation */}
-      <nav className="hidden md:flex items-center gap-8">
-        {navItems.map((item) => {
-          const isActive = pathname === item.path;
-          return (
-            <Link
-              key={item.name}
-              href={item.path}
-              className={`text-sm font-medium tracking-wide uppercase transition-all duration-300 relative py-1 ${
-                isActive
-                  ? "text-neonGreen text-glow-green"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              {item.name}
-              {isActive && (
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neonGreen shadow-[0_0_8px_#5CFF3D]" />
-              )}
+          {/* Mobile Layout & Logo */}
+          <div className="flex md:hidden w-full items-center justify-between relative z-50">
+            <Link href="/" className="relative z-10 flex items-center cursor-pointer group">
+              <span className="font-neuropol text-base font-bold tracking-widest text-neonGreen text-glow-green uppercase select-none">
+                INTELLEX
+              </span>
             </Link>
-          );
-        })}
-      </nav>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white hover:text-neonGreen transition-colors duration-200 focus:outline-none"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
 
-      {/* Let's Talk CTA */}
-      <Link
-        href="/contact"
-        className="flex items-center gap-2 border border-neonGreen px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-neonGreen hover:bg-neonGreen hover:text-black transition-all duration-300 group shadow-[0_0_10px_rgba(92,255,61,0.1)] hover:shadow-[0_0_20px_rgba(92,255,61,0.3)]"
+          {/* Desktop Left Nav Items */}
+          <div className="hidden md:flex items-center gap-8 w-1/3 justify-end pr-4">
+            {leftNavItems.map((item) => {
+              const isActive = pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-xs font-bold uppercase tracking-widest transition-all duration-300 relative py-1 ${
+                    isActive
+                      ? "text-neonGreen text-glow-green"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neonGreen shadow-[0_0_8px_#5CFF3D]" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Desktop Center Logo */}
+          <div className="hidden md:flex w-1/3 justify-center">
+            <Link href="/" className="relative z-10 flex items-center cursor-pointer group">
+              <span className="font-neuropol text-base font-bold tracking-[0.25em] text-neonGreen text-glow-green uppercase transition-all duration-300 group-hover:scale-105">
+                INTELLEX
+              </span>
+            </Link>
+          </div>
+
+          {/* Desktop Right Nav Items */}
+          <div className="hidden md:flex items-center gap-8 w-1/3 justify-start pl-4">
+            {rightNavItems.map((item) => {
+              const isActive = pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-xs font-bold uppercase tracking-widest transition-all duration-300 relative py-1 ${
+                    isActive
+                      ? "text-neonGreen text-glow-green"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neonGreen shadow-[0_0_8px_#5CFF3D]" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+        </div>
+      </header>
+
+      {/* Mobile Menu Slide-over Panel */}
+      <div
+        className={`fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-2xl transition-all duration-500 md:hidden flex flex-col justify-center items-center gap-8 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
       >
-        Let's Talk
-        <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
-    </header>
+        <nav className="flex flex-col items-center gap-8">
+          {allNavItems.map((item) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                onClick={() => setIsOpen(false)}
+                className={`text-xl font-bold uppercase tracking-widest transition-all duration-300 py-2 ${
+                  isActive
+                    ? "text-neonGreen text-glow-green"
+                    : "text-white/50 hover:text-white"
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+    </>
   );
 };
-

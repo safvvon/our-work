@@ -9,6 +9,6 @@ export interface Project {
   technologies: string[];
   liveUrl: string;
   caseStudyUrl: string;
-  mockLayoutType: 'corporate' | 'restaurant' | 'fashion' | 'gym' | 'real-estate' | 'education' | 'healthcare' | 'travel' | 'dashboard' | 'ai' | 'coffee' | 'dental' | 'construction' | 'finance' | 'interior' | 'hotel' | 'event' | 'photography' | 'automobile' | 'ecommerce';
+  mockLayoutType: 'corporate' | 'restaurant' | 'fashion' | 'gym' | 'real-estate' | 'education' | 'healthcare' | 'travel' | 'dashboard' | 'ai' | 'coffee' | 'dental' | 'construction' | 'finance' | 'interior' | 'hotel' | 'event' | 'photography' | 'automobile' | 'ecommerce' | 'creative' | 'artisanal' | 'fitness';
   accentColor?: string;
 }

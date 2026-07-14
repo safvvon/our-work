@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Neuropol X';
+  src: url('/neuropol-x-free.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @layer base {
   body {
     background-color: #050505;
@@ -94,4 +103,24 @@
     opacity: 0.8;
   }
 }
+
+/* Glass capsule navbar style */
+.glass-capsule {
+  background: rgba(8, 8, 8, 0.65);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0px rgba(0, 0, 0, 0.8);
+}
+
+.nav-backlight {
+  width: 140px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(92, 255, 61, 0.18) 0%, rgba(92, 255, 61, 0) 70%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
 

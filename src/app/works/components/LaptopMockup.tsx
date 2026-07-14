@@ -334,12 +334,13 @@ export const MockWebsiteScreen: React.FC<{ project: Project }> = ({ project }) =
   if (screenshot) {
     return (
       <div className="w-full h-full relative bg-zinc-950 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={screenshot}
           alt={project.name}
           className="w-full h-full object-cover object-top animate-fade-in"
           draggable={false}
+          loading="lazy"
+          decoding="async"
         />
       </div>
     );

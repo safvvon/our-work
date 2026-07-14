@@ -1,28 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { SmokeBackground } from "./SmokeBackground";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Activity } from "lucide-react";
+import { TextPressure } from "../../../components/TextPressure";
 
 export const HomeHero: React.FC = () => {
-  const words = ["CONVERT", "INSPIRE", "PERFORM", "SCALE"];
-  const [currentWordIdx, setCurrentWordIdx] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setCurrentWordIdx((prev) => (prev + 1) % words.length);
-        setFade(true);
-      }, 300);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 py-20 overflow-hidden select-none font-sans z-10">
       
+      {/* Glowing Ambient Green Aura */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-neonGreen/10 rounded-full blur-[120px] pointer-events-none z-0" />
+
+      {/* Interactive Fluid/Smoke Background */}
+      <SmokeBackground />
+
       {/* Decorative floating orbit grid */}
       <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-white/[0.02] rounded-full pointer-events-none z-0 flex items-center justify-center animate-[spin_60s_linear_infinite]">
         <div className="w-[500px] h-[500px] border border-dashed border-white/[0.02] rounded-full flex items-center justify-center">
@@ -33,7 +26,7 @@ export const HomeHero: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10">
+      <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 w-full">
         
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neonGreen/20 bg-neonGreen/5 text-neonGreen text-xs font-semibold tracking-wider font-mono uppercase shadow-[0_0_15px_rgba(92,255,61,0.05)]">
@@ -41,16 +34,23 @@ export const HomeHero: React.FC = () => {
           Modern Web Design & Dev Agency
         </div>
 
-        {/* H1 Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight leading-none text-white uppercase font-sans">
-          WE BUILD WEBSITES<br />
-          THAT{" "}
-          <span className="relative inline-block min-w-[200px] sm:min-w-[400px]">
-            <span className={`text-neonGreen text-glow-green transition-all duration-300 inline-block ${fade ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}>
-              {words[currentWordIdx]}
-            </span>
-          </span>
-        </h1>
+        {/* H1 Title with Dynamic Text Pressure */}
+        <div className="relative w-full h-[80px] sm:h-[130px] md:h-[200px] flex items-center justify-center py-4 overflow-visible">
+          <TextPressure
+            text="INTELLEX"
+            fontFamily="Roboto Flex"
+            fontUrl="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
+            flex={true}
+            alpha={false}
+            stroke={false}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="#5CFF3D"
+            minFontSize={48}
+            className="filter drop-shadow-[0_0_20px_rgba(92,255,61,0.55)] font-bold tracking-widest"
+          />
+        </div>
 
         {/* Paragraph Description */}
         <p className="text-sm sm:text-lg text-white/50 leading-relaxed max-w-xl mx-auto mt-2 font-mono">

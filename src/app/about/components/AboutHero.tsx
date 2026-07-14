@@ -22,7 +22,7 @@ export const AboutHero: React.FC = () => {
 
         {/* Paragraph Description */}
         <p className="text-base sm:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto mt-2 font-mono">
-          GREENFRAME is a premium creative design and development studio. We don't just build websites; we design interactive digital portals that feel premium, look stunning, and load instantly.
+          INTELLEX is a premium creative design and development studio. We don't just build websites; we design interactive digital portals that feel premium, look stunning, and load instantly.
         </p>
 
       </div>
