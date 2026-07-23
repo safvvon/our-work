@@ -114,7 +114,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     description: "Premium car dealership, sales, and online test drive booking.",
     longDescription: "A premium car showroom portal featuring interactive spec sheet filters, custom configurator mockups, dealership locators, and financing calculators.",
     technologies: ["Next.js", "Tailwind CSS", "Three.js"],
-    liveUrl: "https://smartwheels.com",
+    liveUrl: "https://www.smartwheelsskating.com/",
     caseStudyUrl: "#",
     mockLayoutType: "automobile"
   },
