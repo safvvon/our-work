@@ -4,12 +4,12 @@ import { Footer } from "../../layouts/Footer";
 import { FuturisticTeamSection } from "../../components/FuturisticTeamSection";
 
 export const metadata = {
-  title: "Our Team | Intellex",
+  title: "Technology & Innovators | Intellex",
   description:
-    "Meet the Intellex Innovators — our dedicated team of architects, engineers, designers, and growth leaders.",
+    "Explore Intellex's cutting-edge technology stack and meet our team of dedicated engineers, AI architects, designers, and innovators.",
 };
 
-export default function TeamPage() {
+export default function TechnologyPage() {
   return (
     <div className="relative min-h-screen bg-[#09090B] text-white flex flex-col font-sans overflow-x-hidden selection:bg-[#5CFF3D] selection:text-black">
       {/* Navigation Header */}

@@ -12,6 +12,8 @@ export const Header: React.FC = () => {
   const leftNavItems = [
     { name: "Solutions", path: "/works" },
     { name: "Technology", path: "/#services" },
+    { name: "Our Work", path: "/works" },
+    { name: "Our Team", path: "/team" },
   ];
 
   const rightNavItems = [
@@ -22,6 +24,8 @@ export const Header: React.FC = () => {
   const allNavItems = [
     { name: "Solutions", path: "/works" },
     { name: "Technology", path: "/#services" },
+    { name: "Our Work", path: "/works" },
+    { name: "Our Team", path: "/team" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
