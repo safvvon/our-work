@@ -2,7 +2,6 @@
 
 import React, { useState, useCallback } from "react";
 import { Header } from "../../layouts/Header";
-import { Footer } from "../../layouts/Footer";
 import { FilmRoll } from "./components/FilmRoll";
 import { LaptopMockup } from "./components/LaptopMockup";
 import { ProjectDetails } from "./components/ProjectDetails";
@@ -90,13 +89,6 @@ export default function WorksPage() {
           </div>
         ))}
       </section>
-
-      {/* Footer Layout */}
-      <Footer minimal />
-      {/* Footer Layout with matching offset for Works Page */}
-      <div className="w-full pl-[95px] sm:pl-[160px] md:pl-[210px] lg:pl-[320px] xl:pl-[360px] relative z-10 bg-[#050505]">
-        <Footer />
-      </div>
     </div>
   );
 }
