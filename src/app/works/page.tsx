@@ -91,6 +91,8 @@ export default function WorksPage() {
         ))}
       </section>
 
+      {/* Footer Layout */}
+      <Footer minimal />
       {/* Footer Layout with matching offset for Works Page */}
       <div className="w-full pl-[95px] sm:pl-[160px] md:pl-[210px] lg:pl-[320px] xl:pl-[360px] relative z-10 bg-[#050505]">
         <Footer />

@@ -27,10 +27,7 @@ export const ContactHero: React.FC<ContactHeroProps> = ({ onScrollToForm }) => {
 
         {/* H1 Title */}
         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-none text-white uppercase font-space filter drop-shadow-[0_0_15px_rgba(57,255,20,0.4)]">
-          Let&apos;s Create Something<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyberGreen via-cyberMint to-cyberAccent font-black">
-            Incredible
-          </span>
+          Let <span className="text-neonGreen" style={{ textShadow: '0 0 8px rgba(92, 255, 61, 0.4), 0 0 20px rgba(92, 255, 61, 0.2)' }}>Young</span> do
         </h1>
 
         {/* Paragraph Description */}

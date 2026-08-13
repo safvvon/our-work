@@ -5,6 +5,36 @@ import Link from "next/link";
 import { ArrowRight, Facebook, Instagram, Linkedin, Globe } from "lucide-react";
 
 interface FooterProps {
+  minimal?: boolean;
+}
+
+export const Footer: React.FC<FooterProps> = ({ minimal = false }) => {
+  if (minimal) {
+    return (
+      <footer className="w-full border-t border-white/[0.03] bg-[#050505] py-10 px-6 md:px-12 relative overflow-hidden">
+        {/* Background radial glow */}
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-neonGreen/5 blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Intellex Logo */}
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 border-2 border-neonGreen flex items-center justify-center">
+              <div className="w-2 h-2 bg-neonGreen" />
+            </div>
+            <span className="font-neuropol text-base font-bold tracking-widest uppercase text-white">
+              INTELLEX
+            </span>
+          </div>
+
+          {/* Copyright */}
+          <span className="text-xs text-white/30 font-mono">
+            © {new Date().getFullYear()} Intellex. All rights reserved.
+          </span>
+        </div>
+      </footer>
+    );
+  }
+
   className?: string;
 }
 
@@ -20,6 +50,8 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
           <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-neonGreen uppercase font-mono">
             Have a project in mind?
           </span>
+          <h3 className="text-2xl md:text-4xl font-bold font-mono tracking-tight leading-tight">
+            Let <span className="text-neonGreen" style={{ textShadow: '0 0 8px rgba(92, 255, 61, 0.4), 0 0 20px rgba(92, 255, 61, 0.2)' }}>Young</span> do
           <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-sans tracking-tight leading-tight">
             Let's Build Something<br className="hidden sm:inline" />{" "}
             <span className="text-neonGreen text-glow-green">Amazing Together</span>
