@@ -8,25 +8,25 @@ export const TestimonialsSection: React.FC = () => {
 
   const testimonials = [
     {
-      name: "Marcus Aurelius",
-      role: "CTO, TechVanguard Corp",
+      name: "Arjun Menon",
+      role: "Founder, Freshbite Foods",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
       rating: 5,
-      text: "The web portal built by Intellex exceeded all our benchmarks. The 3D animations are incredibly smooth, and the headless loading speed resulted in a 40% increase in conversions.",
+      text: "Intellex built us a website that truly reflects our brand. The design is clean, fast, and our customers love it. We saw a noticeable jump in online orders within the first month.",
     },
     {
-      name: "Elena Rostova",
-      role: "Creative Director, Vogue Digital",
+      name: "Priya Sharma",
+      role: "Marketing Lead, Coastal Stays",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
       rating: 5,
-      text: "We wanted a website that looked like an award-winning digital piece. The team delivered exactly that. Their attention to aesthetic micro-interactions and dark-mode gradients is unmatched.",
+      text: "Working with the Intellex team was a great experience. They understood our vision and delivered a polished website that performs beautifully on every device.",
     },
     {
-      name: "Darian Vance",
-      role: "Founder, Zenith Fitness",
+      name: "Rohan D'Souza",
+      role: "Owner, Elevate Fitness",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
       rating: 5,
-      text: "Instantly loads, feels premium, and runs beautifully on mobile devices. Working with Intellex was seamless and our customers have constantly praised the website design.",
+      text: "Our new website loads fast, looks premium, and we get compliments on it all the time. The team was responsive and delivered everything on schedule.",
     },
   ];
 
@@ -62,7 +62,7 @@ export const TestimonialsSection: React.FC = () => {
           
           <div className="flex gap-1">
             {Array.from({ length: active.rating }).map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-cyberGreen text-cyberGreen shadow-[0_0_10px_#39FF14]" />
+              <Star key={i} className="w-5 h-5 fill-cyberGreen text-cyberGreen" />
             ))}
           </div>
 
@@ -78,7 +78,7 @@ export const TestimonialsSection: React.FC = () => {
               height={56}
               loading="lazy"
               decoding="async"
-              className="w-14 h-14 rounded-full border-2 border-cyberGreen/40 object-cover shadow-[0_0_15px_rgba(57,255,20,0.15)]"
+              className="w-14 h-14 rounded-full border-2 border-cyberGreen/40 object-cover"
             />
             <div className="flex flex-col items-start">
               <h4 className="font-bold text-white font-space text-base">{active.name}</h4>

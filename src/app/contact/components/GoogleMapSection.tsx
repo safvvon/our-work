@@ -8,10 +8,10 @@ export const GoogleMapSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center flex flex-col items-center gap-4 mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-cyberMint font-mono">
-            HQ LOCATOR
+            LOCATION
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-space uppercase">
-            Our Studio <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyberMint to-cyberAccent">Command Center</span>
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyberMint to-cyberAccent">Studio</span>
           </h2>
         </div>
 
@@ -30,7 +30,7 @@ export const GoogleMapSection: React.FC = () => {
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Intellex Command Center Location Map"
+              title="Intellex Studio Location"
             />
             {/* Cyber Overlay Overlay Grid */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#050505]/40 via-transparent to-transparent" />

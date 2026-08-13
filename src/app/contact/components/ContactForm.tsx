@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { Phone, Mail, Send, CheckCircle2, MessageSquare } from "lucide-react";
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -38,21 +38,21 @@ export const ContactForm: React.FC = () => {
 
   const contactCards = [
     {
-      title: "Direct Calling",
+      title: "Phone",
       value: "+91 85900 74043",
       icon: <Phone className="w-5 h-5 text-cyberGreen" />,
       link: "tel:+918590074043",
       label: "Call Now",
     },
     {
-      title: "Secure Email",
+      title: "Email",
       value: "web.intellex@gmail.com",
       icon: <Mail className="w-5 h-5 text-cyberMint" />,
       link: "mailto:web.intellex@gmail.com",
       label: "Send Email",
     },
     {
-      title: "Instant Chat",
+      title: "WhatsApp",
       value: "WhatsApp Business",
       icon: <MessageSquare className="w-5 h-5 text-cyberGreen" />,
       link: "https://wa.me/918590074043",
@@ -68,13 +68,13 @@ export const ContactForm: React.FC = () => {
         <div className="lg:col-span-5 flex flex-col gap-6">
           <div className="flex flex-col items-start gap-3 mb-4">
             <span className="text-xs font-semibold uppercase tracking-widest text-cyberGreen font-mono">
-              COMMUNICATION PORTS
+              GET IN TOUCH
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold font-space uppercase">
-              Establish <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyberGreen to-cyberMint">Connection</span>
+              Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyberGreen to-cyberMint">Us</span>
             </h2>
             <p className="text-xs sm:text-sm text-white/50 leading-relaxed font-sans max-w-md">
-              Initialize a data transfer with our team via secure encryption ports. We process all transmissions within 24 hours.
+              Reach out to our team through any of the channels below. We typically respond within 24 hours.
             </p>
           </div>
 
@@ -113,18 +113,18 @@ export const ContactForm: React.FC = () => {
             {submitted ? (
               /* Success Screen */
               <div className="flex flex-col items-center justify-center text-center py-12 gap-4 animate-[fadeIn_0.5s_ease_1]">
-                <CheckCircle2 className="w-16 h-16 text-cyberGreen filter drop-shadow-[0_0_15px_#39FF14]" />
+                <CheckCircle2 className="w-16 h-16 text-cyberGreen" />
                 <h3 className="text-xl sm:text-2xl font-bold font-space text-white mt-2">
-                  TRANSMISSION SUCCESSFUL
+                  Message Sent!
                 </h3>
                 <p className="text-xs sm:text-sm text-white/50 max-w-sm font-sans leading-relaxed">
-                  Thank you for reaching out to INTELLEX. Our engineers have registered your transmission. We will follow up via secure email within 24 hours.
+                  Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 border border-cyberGreen/40 hover:border-cyberGreen hover:bg-cyberGreen/5 px-8 py-3 rounded-full text-xs font-bold text-cyberGreen uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.05)]"
+                  className="mt-6 border border-cyberGreen/40 hover:border-cyberGreen hover:bg-cyberGreen/5 px-8 py-3 rounded-full text-xs font-bold text-cyberGreen uppercase tracking-wider transition-all duration-300"
                 >
-                  Establish New Port
+                  Send Another Message
                 </button>
               </div>
             ) : (
@@ -247,7 +247,7 @@ export const ContactForm: React.FC = () => {
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your system goals, timeline, and layout details..."
+                    placeholder="Tell us about your project, goals, and timeline..."
                     className="w-full bg-white/[0.01] border border-white/5 focus:border-cyberGreen focus:shadow-[0_0_15px_rgba(57,255,20,0.15)] focus:outline-none px-4 py-3 rounded-xl text-xs text-white transition-all duration-200 resize-none"
                   />
                 </div>
@@ -256,7 +256,7 @@ export const ContactForm: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 bg-cyberGreen text-black font-bold uppercase tracking-widest text-xs py-4.5 rounded-xl hover:bg-white hover:text-black hover:shadow-[0_0_35px_rgba(57,255,20,0.6)] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 select-none shadow-[0_0_20px_rgba(57,255,20,0.15)]"
+                  className="w-full flex items-center justify-center gap-2 bg-cyberGreen text-black font-bold uppercase tracking-widest text-sm py-5 rounded-xl hover:bg-white hover:text-black hover:shadow-[0_0_35px_rgba(57,255,20,0.6)] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 select-none shadow-[0_0_20px_rgba(57,255,20,0.15)]"
                 >
                   {loading ? (
                     <span className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
