@@ -22,7 +22,7 @@ export default function TechnologyPage() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer minimal />
     </div>
   );
 }

@@ -52,13 +52,6 @@ export const ContactForm: React.FC = () => {
       label: "Send Email",
     },
     {
-      title: "Command Center HQ",
-      value: "Moodabidri, Mangalore, KA",
-      icon: <MapPin className="w-5 h-5 text-cyberAccent" />,
-      link: "https://maps.google.com/?q=Moodabidri,+Mangalore,+Karnataka,+India",
-      label: "Get Directions",
-    },
-    {
       title: "Instant Chat",
       value: "WhatsApp Business",
       icon: <MessageSquare className="w-5 h-5 text-cyberGreen" />,

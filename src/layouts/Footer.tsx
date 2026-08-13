@@ -48,8 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "", minimal = false 
             Have a project in mind?
           </span>
           <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-sans tracking-tight leading-tight">
-            Let&apos;s Build Something<br className="hidden sm:inline" />{" "}
-            <span className="text-neonGreen text-glow-green">Amazing Together</span>
+            Let <span className="text-neonGreen text-glow-green">Young</span> Do!
           </h3>
         </div>
         <Link
