@@ -5,10 +5,11 @@ import Link from "next/link";
 import { ArrowRight, Facebook, Instagram, Linkedin, Globe } from "lucide-react";
 
 interface FooterProps {
+  className?: string;
   minimal?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ minimal = false }) => {
+export const Footer: React.FC<FooterProps> = ({ className = "", minimal = false }) => {
   if (minimal) {
     return (
       <footer className="w-full border-t border-white/[0.03] bg-[#050505] py-10 px-6 md:px-12 relative overflow-hidden">
@@ -21,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ minimal = false }) => {
             <div className="w-5 h-5 border-2 border-neonGreen flex items-center justify-center">
               <div className="w-2 h-2 bg-neonGreen" />
             </div>
-            <span className="font-neuropol text-base font-bold tracking-widest uppercase text-white">
+            <span className="font-mono text-base font-bold tracking-widest uppercase text-white">
               INTELLEX
             </span>
           </div>
@@ -35,10 +36,6 @@ export const Footer: React.FC<FooterProps> = ({ minimal = false }) => {
     );
   }
 
-  className?: string;
-}
-
-export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
   return (
     <footer className={`w-full border-t border-white/[0.03] bg-[#050505] pt-10 md:pt-16 pb-8 md:pb-10 px-4 sm:px-6 md:px-12 relative overflow-hidden z-10 ${className}`}>
       {/* Background radial glow */}
@@ -50,10 +47,8 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
           <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-neonGreen uppercase font-mono">
             Have a project in mind?
           </span>
-          <h3 className="text-2xl md:text-4xl font-bold font-mono tracking-tight leading-tight">
-            Let <span className="text-neonGreen" style={{ textShadow: '0 0 8px rgba(92, 255, 61, 0.4), 0 0 20px rgba(92, 255, 61, 0.2)' }}>Young</span> do
           <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-sans tracking-tight leading-tight">
-            Let's Build Something<br className="hidden sm:inline" />{" "}
+            Let&apos;s Build Something<br className="hidden sm:inline" />{" "}
             <span className="text-neonGreen text-glow-green">Amazing Together</span>
           </h3>
         </div>
@@ -174,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             Privacy Policy
           </a>
           <a href="#" className="hover:text-neonGreen transition-colors">
-            Terms & Conditions
+            Terms &amp; Conditions
           </a>
         </div>
       </div>
