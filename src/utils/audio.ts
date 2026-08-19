@@ -59,7 +59,7 @@ class SoundManager {
           new Howl({
             src: [dataUrl],
             format: ["wav"],
-            volume: 0.18, // 18% volume requirement
+            volume: 0.85, // Amplified 85% volume
             preload: true,
           })
       );
@@ -131,14 +131,14 @@ class SoundManager {
   }
 
   /**
-   * Play a navigation UI click sound with randomized pitch and non-overlapping control.
+   * Play a navigation UI click sound with randomized pitch and non-overlapping control (amplified).
    */
-  public playNavClick() {
+  public playNavClick(volumeMultiplier: number = 1.0) {
     if (this.isMuted || this.howls.length === 0) return;
 
     const now = Date.now();
-    // Do NOT overlap sounds (throttle by 50ms)
-    if (now - this.lastPlayTime < 50) return;
+    // Do NOT overlap sounds (throttle by 40ms)
+    if (now - this.lastPlayTime < 40) return;
     this.lastPlayTime = now;
 
     // Pick random sound from the pool
@@ -151,9 +151,138 @@ class SoundManager {
       const randomRate = pitches[Math.floor(Math.random() * pitches.length)];
 
       sound.rate(randomRate);
-      sound.volume(0.18); // 18% volume
+      sound.volume(Math.min(1.0, 0.85 * volumeMultiplier)); // Amplified audio level
       sound.play();
     }
+  }
+
+  /**
+   * Play an amplified crisp mechanical ratchet tick when scrolling items.
+   */
+  public playScrollTick() {
+    if (this.isMuted) return;
+
+    const now = Date.now();
+    if (now - this.lastPlayTime < 30) return;
+    this.lastPlayTime = now;
+
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(950, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.025);
+
+      gain.gain.setValueAtTime(0.45, ctx.currentTime); // Amplified gain
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
+
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.03);
+    } catch (e) {}
+  }
+
+  /**
+   * Synthesize a smooth, silky-soft aerodynamic swoosh sound effect following cursor fluid swirls.
+   */
+  public playSwoosh() {
+    if (this.isMuted) return;
+
+    const now = Date.now();
+    if (now - this.lastPlayTime < 240) return; // Smooth throttle interval
+    this.lastPlayTime = now;
+
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+
+      const ctx = new AudioContext();
+      
+      // Soft noise buffer for gentle fluid air movement (320ms duration)
+      const duration = 0.32;
+      const bufferSize = Math.floor(ctx.sampleRate * duration);
+      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let lastOut = 0.0;
+      
+      // Pink-filtered noise for smooth warmth
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        output[i] = (lastOut + 0.08 * white) / 1.08;
+        lastOut = output[i];
+      }
+
+      const noiseNode = ctx.createBufferSource();
+      noiseNode.buffer = noiseBuffer;
+
+      // Soft lowpass filter sweep down: 1100Hz -> 80Hz
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.Q.setValueAtTime(0.8, ctx.currentTime);
+      filter.frequency.setValueAtTime(1100, ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + duration);
+
+      // Amplified smooth envelope
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.85, ctx.currentTime + 0.09);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+      noiseNode.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+
+      noiseNode.start(ctx.currentTime);
+      noiseNode.stop(ctx.currentTime + duration);
+    } catch (e) {}
+  }
+
+  /**
+   * Play a heavy metallic projector slide lock sound effect for the Our Work page.
+   */
+  public playWorkSlideSound() {
+    if (this.isMuted) return;
+
+    const now = Date.now();
+    if (now - this.lastPlayTime < 50) return;
+    this.lastPlayTime = now;
+
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+
+      const ctx = new AudioContext();
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc1.type = "triangle";
+      osc1.frequency.setValueAtTime(1400, ctx.currentTime);
+      osc1.frequency.exponentialRampToValueAtTime(280, ctx.currentTime + 0.05);
+
+      osc2.type = "sawtooth";
+      osc2.frequency.setValueAtTime(480, ctx.currentTime);
+      osc2.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.05);
+
+      gain.gain.setValueAtTime(0.55, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.055);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc1.start(ctx.currentTime);
+      osc2.start(ctx.currentTime);
+      osc1.stop(ctx.currentTime + 0.055);
+      osc2.stop(ctx.currentTime + 0.055);
+    } catch (e) {}
   }
 }
 

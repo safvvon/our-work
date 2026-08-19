@@ -70,25 +70,6 @@ export default function WorksPage() {
         </section>
 
       </main>
-
-      {/* Trust Badges / Stats Strip */}
-      <section className="w-full max-w-[100rem] mx-auto pl-[95px] sm:pl-[160px] md:pl-[210px] lg:pl-[320px] xl:pl-[360px] pr-6 md:pr-12 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-white/[0.03] bg-white/[0.005] backdrop-blur-sm z-10 relative">
-        {[
-          { label: "Websites Completed", val: "120+" },
-          { label: "Happy Clients", val: "100+" },
-          { label: "Years of Experience", val: "5+" },
-          { label: "Client Satisfaction", val: "99%" }
-        ].map((stat, idx) => (
-          <div key={idx} className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
-            <span className="text-xl md:text-3xl font-black font-sans text-neonGreen text-glow-green">
-              {stat.val}
-            </span>
-            <span className="text-[10px] uppercase tracking-wider text-white/40 font-mono">
-              {stat.label}
-            </span>
-          </div>
-        ))}
-      </section>
     </div>
   );
 }

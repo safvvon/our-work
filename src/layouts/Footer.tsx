@@ -7,9 +7,14 @@ import { ArrowRight, Facebook, Instagram, Linkedin, Globe } from "lucide-react";
 interface FooterProps {
   className?: string;
   minimal?: boolean;
+  hideCta?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ className = "", minimal = false }) => {
+export const Footer: React.FC<FooterProps> = ({
+  className = "",
+  minimal = false,
+  hideCta = false,
+}) => {
   if (minimal) {
     return (
       <footer className="w-full border-t border-white/[0.03] bg-[#050505] py-10 px-6 md:px-12 relative overflow-hidden">
@@ -37,28 +42,30 @@ export const Footer: React.FC<FooterProps> = ({ className = "", minimal = false 
   }
 
   return (
-    <footer className={`w-full border-t border-white/[0.03] bg-[#050505] pt-10 md:pt-16 pb-8 md:pb-10 px-4 sm:px-6 md:px-12 relative overflow-hidden z-10 ${className}`}>
+    <footer className={`w-full border-t border-white/[0.03] bg-[#050505] ${hideCta ? "pt-6 md:pt-10" : "pt-10 md:pt-16"} pb-6 md:pb-8 px-4 sm:px-6 md:px-12 relative overflow-hidden z-10 ${className}`}>
       {/* Background radial glow */}
       <div className="absolute bottom-0 right-0 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-neonGreen/5 blur-[100px] sm:blur-[120px] pointer-events-none" />
 
       {/* Call to Action Grid */}
-      <div className="max-w-7xl mx-auto border border-white/[0.06] bg-white/[0.015] rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 mb-8 md:mb-14 flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-8 relative overflow-hidden backdrop-blur-md">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1.5 sm:gap-2">
-          <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-neonGreen uppercase font-mono">
-            Have a project in mind?
-          </span>
-          <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-sans tracking-tight leading-tight">
-            Let <span className="text-neonGreen text-glow-green">Young</span> Do!
-          </h3>
+      {!hideCta && (
+        <div className="max-w-7xl mx-auto border border-white/[0.06] bg-white/[0.015] rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 mb-8 md:mb-14 flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-8 relative overflow-hidden backdrop-blur-md">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1.5 sm:gap-2">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-neonGreen uppercase font-mono">
+              Have a project in mind?
+            </span>
+            <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-sans tracking-tight leading-tight">
+              Let <span className="text-neonGreen text-glow-green">Young</span> Do!
+            </h3>
+          </div>
+          <Link
+            href="/contact"
+            className="flex items-center justify-center gap-2.5 sm:gap-3 border border-white/20 hover:border-neonGreen px-6 py-3 sm:px-8 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:text-black hover:bg-neonGreen transition-all duration-300 group shadow-md hover:shadow-[0_0_25px_rgba(92,255,61,0.3)] w-full sm:w-auto shrink-0"
+          >
+            Get in touch
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
-        <Link
-          href="/contact"
-          className="flex items-center justify-center gap-2.5 sm:gap-3 border border-white/20 hover:border-neonGreen px-6 py-3 sm:px-8 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:text-black hover:bg-neonGreen transition-all duration-300 group shadow-md hover:shadow-[0_0_25px_rgba(92,255,61,0.3)] w-full sm:w-auto shrink-0"
-        >
-          Get in touch
-          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
-      </div>
+      )}
 
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 mb-8 md:mb-14 text-left">
         {/* Brand Column */}
@@ -155,7 +162,6 @@ export const Footer: React.FC<FooterProps> = ({ className = "", minimal = false 
               +91 85900 74043
             </a>
             <span>www.intellex.studio</span>
-            <span>Moodabidri, Mangalore, India</span>
           </div>
         </div>
       </div>

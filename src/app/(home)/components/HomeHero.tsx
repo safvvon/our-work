@@ -6,7 +6,7 @@ import { TextPressure } from "../../../components/TextPressure";
 
 export const HomeHero: React.FC = () => {
   return (
-    <section className="relative min-h-[calc(100vh-80px)] flex-1 flex flex-col items-center justify-center text-center px-6 md:px-12 py-20 overflow-hidden select-none font-sans z-10">
+    <section className="relative min-h-screen flex-1 flex flex-col items-center justify-center text-center px-6 md:px-12 pt-28 sm:pt-36 pb-16 overflow-hidden select-none font-sans z-10">
       
       {/* Interactive Fluid Dynamics Background */}
       <SmokeBackground />

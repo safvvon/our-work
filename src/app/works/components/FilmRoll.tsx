@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Project } from "../../../types/portfolio";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { MockWebsiteScreen } from "./LaptopMockup";
+import { soundManager } from "../../../utils/audio";
 
 interface FilmRollProps {
   projects: Project[];
@@ -33,53 +34,17 @@ export const FilmRoll: React.FC<FilmRollProps> = ({
   const itemAngle = 15;
   const totalSlots = 24;
 
-  // Synthesize a crisp projector slide lock click
+  // Synthesize custom projector metallic slide lock sound effect for Our Work page
   const playClickSound = () => {
     try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
-
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(700, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.035);
-
-      gain.gain.setValueAtTime(0.04, ctx.currentTime); 
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.035);
-
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.04);
+      soundManager.playWorkSlideSound();
     } catch (err) {}
   };
 
-  // Synthesize a micro mechanical ratchet tick for scroll feedback
+  // Synthesize scroll feedback sound
   const playScrollTickSound = () => {
     try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
-
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(600, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.015);
-
-      gain.gain.setValueAtTime(0.015, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.015);
-
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.02);
+      soundManager.playWorkSlideSound();
     } catch (err) {}
   };
 

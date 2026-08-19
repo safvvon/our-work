@@ -320,18 +320,18 @@ export const LaptopMockup: React.FC<LaptopMockupProps> = ({ activeProject }) => 
 // Sub-component to render custom mock page structures
 export const MockWebsiteScreen: React.FC<{ project: Project }> = ({ project }) => {
   const screenshot = {
-    "meachery-furniture": "/meachery-furniture.png",
-    "the-consultant-7": "/the-consultant-7.png",
-    "shq-life": "/shq-life.png",
-    "safeguard-homeshifters": "/safeguard-homeshifters.png",
-    "flawless-era": "/flawless-era.png",
-    "mars-media": "/mars-media.png",
-    "nightingale-holidays": "/nightingale-holidays.png",
-    "verglas-trading": "/verglas-trading.png",
-    "smart-wheels": "/smart-wheels.png",
-    "idia-interiors": "/idia-interiors.png",
-    "eastern-hemlock": "/eastern-hemlock.png",
-    "eat-superhuman": "/eat-superhuman.png"
+    "meachery-furniture": "/meachery-furniture.webp",
+    "the-consultant-7": "/the-consultant-7.webp",
+    "shq-life": "/shq-life.webp",
+    "safeguard-homeshifters": "/safeguard-homeshifters.webp",
+    "flawless-era": "/flawless-era.webp",
+    "mars-media": "/mars-media.webp",
+    "nightingale-holidays": "/nightingale-holidays.webp",
+    "verglas-trading": "/verglas-trading.webp",
+    "smart-wheels": "/smart-wheels.webp",
+    "idia-interiors": "/idia-interiors.webp",
+    "eastern-hemlock": "/eastern-hemlock.webp",
+    "eat-superhuman": "/eat-superhuman.webp"
   }[project.id];
 
   if (screenshot) {
