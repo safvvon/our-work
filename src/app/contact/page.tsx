@@ -5,7 +5,6 @@ import { Header } from "../../layouts/Header";
 import { Footer } from "../../layouts/Footer";
 import { ContactBackground } from "./components/ContactBackground";
 import { ContactHero } from "./components/ContactHero";
-import { WhyChooseUs } from "./components/WhyChooseUs";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { FAQSection } from "./components/FAQSection";
 import { GoogleMapSection } from "./components/GoogleMapSection";
@@ -23,7 +22,6 @@ export default function ContactPage() {
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col pt-20 relative z-10">
         <ContactHero />
-        <WhyChooseUs />
         <TestimonialsSection />
         <FAQSection />
         <GoogleMapSection />
