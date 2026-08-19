@@ -144,24 +144,24 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Contact info */}
-        <div className="flex flex-col items-start gap-2.5 col-span-2 md:col-span-1">
+        <div className="flex flex-col items-start gap-2.5 col-span-1">
           <h4 className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-white/80 font-mono">
             Contact Us
           </h4>
           <div className="flex flex-col items-start gap-2 text-xs text-white/40">
             <a
               href="mailto:web.intellex@gmail.com"
-              className="hover:text-neonGreen transition-colors duration-200 cursor-pointer"
+              className="hover:text-neonGreen transition-colors duration-200 cursor-pointer break-all text-[11px] sm:text-xs"
             >
               web.intellex@gmail.com
             </a>
             <a
               href="tel:+918590074043"
-              className="hover:text-neonGreen transition-colors duration-200 cursor-pointer"
+              className="hover:text-neonGreen transition-colors duration-200 cursor-pointer text-[11px] sm:text-xs"
             >
               +91 85900 74043
             </a>
-            <span>www.intellex.studio</span>
+            <span className="text-[11px] sm:text-xs">www.intellex.studio</span>
           </div>
         </div>
       </div>
