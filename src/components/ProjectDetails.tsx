@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Project } from "../types/portfolio";
-import { ArrowUpRight, Code, Tag, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Tag, ExternalLink } from "lucide-react";
 
 interface ProjectDetailsProps {
   activeProject: Project;
@@ -83,37 +83,14 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ activeProject })
             </div>
           </div>
 
-          {/* Technologies Used */}
-          <div className="flex flex-col gap-2 mb-8">
-            <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono flex items-center gap-1.5">
-              <Code className="w-3 h-3 text-neonGreen/60" /> Tech Stack
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {displayProject.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] font-sans px-2.5 py-1 rounded bg-white/[0.03] border border-white/[0.04] text-white/70"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href={displayProject.liveUrl}
-              className="flex-1 flex items-center justify-center gap-2 bg-neonGreen text-black font-bold uppercase tracking-wider text-xs py-3.5 px-6 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 group"
+              className="w-full flex items-center justify-center gap-2 bg-neonGreen text-black font-bold uppercase tracking-wider text-xs py-3.5 px-6 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 group"
             >
               Live Demo
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href={displayProject.caseStudyUrl}
-              className="flex-1 flex items-center justify-center gap-2 border border-white/20 hover:border-white/80 text-white font-bold uppercase tracking-wider text-xs py-3.5 px-6 rounded-full hover:bg-white/5 transition-all duration-300"
-            >
-              View Case Study
             </a>
           </div>
 

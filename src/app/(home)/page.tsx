@@ -1,6 +1,5 @@
 import React from "react";
 import { Header } from "../../layouts/Header";
-import { Footer } from "../../layouts/Footer";
 import { HomeHero } from "./components/HomeHero";
 
 export default function HomePage() {
@@ -13,9 +12,6 @@ export default function HomePage() {
       <main className="flex-1 w-full flex flex-col pt-20">
         <HomeHero />
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

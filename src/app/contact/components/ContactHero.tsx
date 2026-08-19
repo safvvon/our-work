@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { PhoneCall, FileText } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 
 interface ContactHeroProps {
-  onScrollToForm: () => void;
+  onScrollToForm?: () => void;
 }
 
 export const ContactHero: React.FC<ContactHeroProps> = ({ onScrollToForm }) => {
@@ -25,18 +25,11 @@ export const ContactHero: React.FC<ContactHeroProps> = ({ onScrollToForm }) => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-5 mt-8 w-full sm:w-auto">
-          <button
-            onClick={onScrollToForm}
-            className="flex items-center justify-center gap-3 bg-cyberGreen text-black font-bold uppercase tracking-wider text-xs py-4 px-8 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_35px_rgba(57,255,20,0.6)] transition-all duration-300 group shadow-[0_0_20px_rgba(57,255,20,0.2)] transform hover:-translate-y-0.5"
-          >
-            <FileText className="w-4 h-4" />
-            Get Free Quote
-          </button>
           <a
             href="https://calendly.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-cyberMint hover:text-cyberMint px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 group shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transform hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(0,255,153,0.15)]"
+            className="flex items-center justify-center gap-3 bg-cyberGreen text-black font-bold uppercase tracking-wider text-xs py-4 px-8 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_35px_rgba(57,255,20,0.6)] transition-all duration-300 group shadow-[0_0_20px_rgba(57,255,20,0.2)] transform hover:-translate-y-0.5"
           >
             <PhoneCall className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
             Schedule a Call

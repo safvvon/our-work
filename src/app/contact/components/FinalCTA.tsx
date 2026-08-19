@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { ArrowUp } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 
 interface FinalCTAProps {
-  onScrollToForm: () => void;
+  onScrollToForm?: () => void;
 }
 
-export const FinalCTA: React.FC<FinalCTAProps> = ({ onScrollToForm }) => {
+export const FinalCTA: React.FC<FinalCTAProps> = () => {
   return (
     <section className="relative py-24 px-6 md:px-12 w-full overflow-hidden border-t border-white/[0.03] bg-gradient-to-b from-transparent to-cyberGreen/[0.02]">
       {/* Background neon elements */}
@@ -25,13 +25,15 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onScrollToForm }) => {
           Let&apos;s discuss your project, timeline, and how we can help bring your vision to life.
         </p>
 
-        <button
-          onClick={onScrollToForm}
+        <a
+          href="https://calendly.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-6 flex items-center justify-center gap-3 bg-cyberGreen text-black font-bold uppercase tracking-wider text-sm py-5 px-10 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_35px_rgba(57,255,20,0.6)] transition-all duration-300 group shadow-[0_0_20px_rgba(57,255,20,0.15)]"
         >
-          Contact Our Team
-          <ArrowUp className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-1" />
-        </button>
+          Schedule a Call
+          <PhoneCall className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+        </a>
       </div>
     </section>
   );
