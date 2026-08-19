@@ -99,8 +99,8 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="flex flex-col items-start gap-2.5">
+        {/* Quick Links (Hidden on mobile) */}
+        <div className="hidden md:flex flex-col items-start gap-2.5">
           <h4 className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-white/80 font-mono">
             Quick Links
           </h4>
