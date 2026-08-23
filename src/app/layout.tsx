@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
+const interVariable = "font-sans";
+const spaceGroteskVariable = "font-mono";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://intellex.studio"),
@@ -57,13 +45,15 @@ export const metadata: Metadata = {
   },
 };
 
+import "./globals.css";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en">
       <body className="bg-[#050505] text-white font-sans antialiased">
         {children}
       </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { Phone, Mail, Send, CheckCircle2, MessageSquare } from "lucide-react";
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -50,13 +50,6 @@ export const ContactForm: React.FC = () => {
       icon: <Mail className="w-5 h-5 text-cyberMint" />,
       link: "mailto:hello@intellex.studio",
       label: "Send Email",
-    },
-    {
-      title: "Command Center HQ",
-      value: "Los Angeles, California",
-      icon: <MapPin className="w-5 h-5 text-cyberAccent" />,
-      link: "https://maps.google.com",
-      label: "Get Directions",
     },
     {
       title: "Instant Chat",

@@ -20,7 +20,7 @@ export const GoogleMapSection: React.FC = () => {
           <div className="w-full h-[400px] rounded-2xl overflow-hidden relative border border-white/[0.04]">
             {/* Google Map Iframe with CSS Dark Mode Filter */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!11m18!1m12!1m3!1d3305.733248043757!2d-118.2436849!3d34.0522342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c64f77c8e9cf%3A0xe5ea9841f3d3763f!2sLos+Angeles%2C+CA!5e0!3m2!1sen!2sus!4v1532454678125"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124456.01045!2d74.8!3d12.9141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c37bf488f%3A0x827bbc7a74fcfe64!2sMangalore%2C+Karnataka!5e0!3m2!1sen!2sin!4v1690000000000"
               width="100%"
               height="100%"
               style={{
