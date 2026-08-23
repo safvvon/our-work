@@ -27,7 +27,7 @@ export const AboutTimeline: React.FC = () => {
       year: "2022",
       title: "GreenFrame Studio Founded",
       icon: <Award className="w-4 h-4 text-neonGreen" />,
-      desc: "Founded in Los Angeles, California with a singular focus: replacing average templates with custom-crafted interactive code interfaces.",
+      desc: "Founded in Moodabidri, Mangalore, Karnataka with a singular focus: replacing average templates with custom-crafted interactive code interfaces.",
     },
   ];
 

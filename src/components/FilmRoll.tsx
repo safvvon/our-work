@@ -150,7 +150,7 @@ export const FilmRoll: React.FC<FilmRollProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[85vh] flex items-center overflow-hidden touch-none"
+      className="relative w-full h-[320px] sm:h-[450px] lg:h-[85vh] flex items-center overflow-hidden touch-none"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -176,41 +176,43 @@ export const FilmRoll: React.FC<FilmRollProps> = ({
       />
 
       {/* Manual Navigation Arrows (Floating beside the active center) */}
-      <div className="absolute left-[34%] z-30 flex flex-col gap-3">
+      <div className="absolute left-2 sm:left-4 lg:left-[34%] z-30 flex flex-col gap-2 sm:gap-3">
         <button
           onClick={handlePrev}
           disabled={activeIdx === 0}
-          className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
             activeIdx === 0
               ? "border-white/10 text-white/20 cursor-not-allowed"
               : "border-neonGreen/40 text-neonGreen hover:bg-neonGreen/10 hover:border-neonGreen hover:scale-105"
           }`}
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={handleNext}
           disabled={activeIdx === projects.length - 1}
-          className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
             activeIdx === projects.length - 1
               ? "border-white/10 text-white/20 cursor-not-allowed"
               : "border-neonGreen/40 text-neonGreen hover:bg-neonGreen/10 hover:border-neonGreen hover:scale-105"
           }`}
         >
-          <ArrowDown className="w-5 h-5" />
+          <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
 
-      {/* Rotating Film Strip Container */}
-      <div
-        className="absolute origin-left transition-transform duration-75"
-        style={{
-          left: `-${radius * 0.6}px`, // Pull the circle centers further left
-          top: "50%",
-          transform: `translateY(-50%) rotate(${rotation}deg)`,
-          transformOrigin: "left center",
-        }}
-      >
+      {/* Mobile Scaled & Left-Shifted Wrapper */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full flex items-center origin-left scale-[0.55] sm:scale-[0.72] md:scale-[0.85] lg:scale-100 -translate-x-8 sm:-translate-x-4 lg:translate-x-0 transition-transform duration-300">
+        {/* Rotating Film Strip Container */}
+        <div
+          className="absolute origin-left transition-transform duration-75"
+          style={{
+            left: `-${radius * 0.6}px`, // Pull the circle centers further left
+            top: "50%",
+            transform: `translateY(-50%) rotate(${rotation}deg)`,
+            transformOrigin: "left center",
+          }}
+        >
         {projects.map((proj, idx) => {
           const relativeAngle = idx * itemAngle; // Index spacing angle
           const isActive = idx === activeIdx;
@@ -296,6 +298,7 @@ export const FilmRoll: React.FC<FilmRollProps> = ({
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );

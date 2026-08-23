@@ -72,28 +72,30 @@ export const LaptopMockup: React.FC<LaptopMockupProps> = ({ activeProject }) => 
 
   return (
     <div 
-      className="w-full flex flex-col items-center justify-center py-10 select-none min-h-[440px]" 
+      className="w-full flex flex-col items-center justify-center py-4 lg:py-10 select-none min-h-[260px] sm:min-h-[340px] lg:min-h-[440px]" 
       style={{ perspective: "1500px" }}
     >
-      {/* 3D Interactive Laptop Wrapper (Absolute container to prevent gaps or layout shift) */}
-      <div 
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onClick={() => {
-          if (displayProject.liveUrl && displayProject.liveUrl !== "#") {
-            window.open(displayProject.liveUrl, "_blank");
-          }
-        }}
-        className="relative w-full max-w-[580px] h-[340px] cursor-pointer"
-        style={{
-          transform: `rotateY(${rotationY + tilt.y}deg) rotateX(${tilt.x}deg)`,
-          transformStyle: "preserve-3d",
-          // Smoother transition during manual hover; bouncy elastic transition for project spin swaps
-          transition: isHovering 
-            ? "transform 0.15s ease-out" 
-            : "transform 1.4s cubic-bezier(0.34, 1.3, 0.64, 1)"
-        }}
-      >
+      {/* Responsive Scale Wrapper */}
+      <div className="w-full flex items-center justify-center origin-center scale-[0.72] xs:scale-[0.84] sm:scale-[0.92] lg:scale-100 my-[-35px] xs:my-[-20px] sm:my-[-10px] lg:my-0">
+        {/* 3D Interactive Laptop Wrapper (Absolute container to prevent gaps or layout shift) */}
+        <div 
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => {
+            if (displayProject.liveUrl && displayProject.liveUrl !== "#") {
+              window.open(displayProject.liveUrl, "_blank");
+            }
+          }}
+          className="relative w-full max-w-[580px] h-[340px] cursor-pointer"
+          style={{
+            transform: `rotateY(${rotationY + tilt.y}deg) rotateX(${tilt.x}deg)`,
+            transformStyle: "preserve-3d",
+            // Smoother transition during manual hover; bouncy elastic transition for project spin swaps
+            transition: isHovering 
+              ? "transform 0.15s ease-out" 
+              : "transform 1.4s cubic-bezier(0.34, 1.3, 0.64, 1)"
+          }}
+        >
         {/* Dynamic Project Ambient Backdrop Backlight */}
         <div 
           className="absolute -inset-10 rounded-full blur-[100px] opacity-75 -z-20 transition-all duration-700 pointer-events-none"
@@ -311,24 +313,25 @@ export const LaptopMockup: React.FC<LaptopMockupProps> = ({ activeProject }) => 
         />
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 // Sub-component to render custom mock page structures
 export const MockWebsiteScreen: React.FC<{ project: Project }> = ({ project }) => {
   const screenshot = {
-    "meachery-furniture": "/meachery-furniture.png",
-    "the-consultant-7": "/the-consultant-7.png",
-    "shq-life": "/shq-life.png",
-    "safeguard-homeshifters": "/safeguard-homeshifters.png",
-    "flawless-era": "/flawless-era.png",
-    "mars-media": "/mars-media.png",
-    "nightingale-holidays": "/nightingale-holidays.png",
-    "verglas-trading": "/verglas-trading.png",
-    "smart-wheels": "/smart-wheels.png",
-    "idia-interiors": "/idia-interiors.png",
-    "eastern-hemlock": "/eastern-hemlock.png",
-    "eat-superhuman": "/eat-superhuman.png"
+    "meachery-furniture": "/meachery-furniture.webp",
+    "the-consultant-7": "/the-consultant-7.webp",
+    "shq-life": "/shq-life.webp",
+    "safeguard-homeshifters": "/safeguard-homeshifters.webp",
+    "flawless-era": "/flawless-era.webp",
+    "mars-media": "/mars-media.webp",
+    "nightingale-holidays": "/nightingale-holidays.webp",
+    "verglas-trading": "/verglas-trading.webp",
+    "smart-wheels": "/smart-wheels.webp",
+    "idia-interiors": "/idia-interiors.webp",
+    "eastern-hemlock": "/eastern-hemlock.webp",
+    "eat-superhuman": "/eat-superhuman.webp"
   }[project.id];
 
   if (screenshot) {

@@ -114,8 +114,8 @@ export default function WorksPage() {
       {/* Header Layout */}
       <Header />
 
-      {/* Desktop Fixed Left Reel Section (Hidden on Mobile) */}
-      <div className="hidden lg:flex fixed left-0 top-0 w-[38vw] h-screen z-20 items-center justify-center pointer-events-none">
+      {/* Viewport Fixed Film Roll Panel (Fixed on Left Side Vertically Centered on Mobile & Desktop) */}
+      <div className="fixed left-0 top-0 w-[90px] sm:w-[150px] md:w-[200px] lg:w-[260px] xl:w-[300px] h-screen z-20 flex items-center justify-center pointer-events-none">
         <div className="w-full relative pointer-events-auto">
           <FilmRoll
             projects={PORTFOLIO_PROJECTS}
@@ -123,57 +123,29 @@ export default function WorksPage() {
             onActiveIndexChange={handleActiveIndexChange}
           />
           {/* Scroll Indicator Prompt */}
-          <div className="absolute bottom-[35px] left-[15%] flex items-center gap-2 text-white/30 text-[10px] tracking-widest font-mono uppercase select-none pointer-events-none">
+          <div className="hidden lg:flex absolute bottom-[35px] left-[15%] items-center gap-2 text-white/30 text-[10px] tracking-widest font-mono uppercase select-none pointer-events-none">
             <MousePointerClick className="w-3.5 h-3.5 text-neonGreen animate-bounce" />
             <span>Scroll anywhere to rotate reel</span>
           </div>
         </div>
       </div>
 
-      {/* Main Viewport Content Area (Strictly non-scrollable) */}
-      <main className="flex-1 w-full max-w-[94rem] mx-auto pt-20 lg:pt-24 px-4 md:px-8 flex flex-col lg:flex-row relative z-10 overflow-hidden items-center justify-center">
+      {/* Main Layout Grid */}
+      <main className="flex-1 w-full max-w-[100rem] mx-auto pl-[95px] sm:pl-[160px] md:pl-[210px] lg:pl-[320px] xl:pl-[360px] pr-4 sm:pr-6 md:pr-8 xl:pr-12 pt-24 md:pt-28 flex flex-col relative z-10">
         
-        {/* Mobile/Tablet Compact Reel Header & Controls (Visible on mobile/tablet only) */}
-        <div className="w-full lg:hidden flex items-center justify-between py-2 px-2 border-b border-white/5 bg-black/40 backdrop-blur-md rounded-2xl mb-2 z-20">
-          <button
-            onClick={() => setActiveIdx((prev) => Math.max(0, prev - 1))}
-            disabled={activeIdx === 0}
-            className="p-1.5 rounded-lg border border-white/10 text-neonGreen disabled:opacity-30 disabled:border-white/5"
-          >
-            <ChevronUp className="w-4 h-4" />
-          </button>
-
-          <div className="flex flex-col items-center">
-            <span className="text-neonGreen text-xs font-bold font-mono text-glow-green">
-              {activeProject.number} / {PORTFOLIO_PROJECTS.length.toString().padStart(2, '0')}
-            </span>
-            <span className="text-[10px] text-white/70 font-mono truncate max-w-[150px]">
-              {activeProject.name}
-            </span>
-          </div>
-
-          <button
-            onClick={() => setActiveIdx((prev) => Math.min(PORTFOLIO_PROJECTS.length - 1, prev + 1))}
-            disabled={activeIdx === PORTFOLIO_PROJECTS.length - 1}
-            className="p-1.5 rounded-lg border border-white/10 text-neonGreen disabled:opacity-30 disabled:border-white/5"
-          >
-            <ChevronDown className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* Right Section (Shifts on desktop to accommodate the fixed left film reel) */}
-        <section className="w-full lg:w-[62%] lg:ml-[38%] flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8 h-full py-2 overflow-hidden">
+        {/* Main Section (Laptop Mockup + Project Details on Right) */}
+        <section className="w-full flex flex-col lg:flex-row items-center justify-center py-6 lg:py-10 gap-8 xl:gap-12 min-h-[calc(100vh-140px)]">
           
-          {/* Laptop 3D Preview (Center in viewport) */}
-          <div className="w-full lg:w-[54%] flex items-center justify-center">
-            <div className="w-full max-w-[540px]">
+          {/* 3D Laptop Preview (Shifted slightly right for optimal balance) */}
+          <div className="flex-1 w-full flex items-center justify-center min-w-0">
+            <div className="w-full max-w-[620px] xl:max-w-[680px] lg:translate-x-6 xl:translate-x-10">
               <LaptopMockup activeProject={activeProject} />
             </div>
           </div>
 
-          {/* Project Details Panel (Right side in viewport) */}
-          <div className="w-full lg:w-[46%] flex items-center justify-center lg:justify-start overflow-y-auto lg:overflow-visible max-h-[40vh] lg:max-h-none custom-scrollbar">
-            <div className="w-full">
+          {/* Website Details (Right side of Laptop) */}
+          <div className="w-full lg:w-[420px] xl:w-[460px] shrink-0 flex items-center justify-center lg:justify-start">
+            <div className="w-full max-w-[460px]">
               <ProjectDetails activeProject={activeProject} />
             </div>
           </div>
@@ -181,45 +153,6 @@ export default function WorksPage() {
         </section>
 
       </main>
-
-      {/* Non-scrollable Viewport Bottom Bar / Trust Stats & CTA */}
-      <footer className="w-full border-t border-white/[0.04] bg-black/70 backdrop-blur-md px-4 md:px-8 py-2.5 flex items-center justify-between z-20 text-[11px] font-mono text-white/40">
-        
-        {/* Left: Quick Stats Strip */}
-        <div className="flex items-center gap-4 sm:gap-6">
-          <div className="flex items-center gap-1.5">
-            <span className="text-neonGreen font-bold font-sans">120+</span>
-            <span className="hidden sm:inline text-white/30 text-[10px]">WEBSITES</span>
-          </div>
-          <span className="text-white/20">•</span>
-          <div className="flex items-center gap-1.5">
-            <span className="text-neonGreen font-bold font-sans">100+</span>
-            <span className="hidden sm:inline text-white/30 text-[10px]">CLIENTS</span>
-          </div>
-          <span className="hidden md:inline text-white/20">•</span>
-          <div className="hidden md:flex items-center gap-1.5">
-            <span className="text-neonGreen font-bold font-sans">99%</span>
-            <span className="text-white/30 text-[10px]">SATISFACTION</span>
-          </div>
-        </div>
-
-        {/* Center: Navigation hint */}
-        <div className="hidden lg:flex items-center gap-2 text-[10px] text-white/30 uppercase tracking-wider">
-          <span>Scroll wheel anywhere or use ↑↓ keys to rotate reel</span>
-        </div>
-
-        {/* Right: Action CTA */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="flex items-center gap-1.5 text-xs text-neonGreen hover:text-white font-bold tracking-wider transition-colors duration-200"
-          >
-            <span>GET IN TOUCH</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-      </footer>
     </div>
   );
 }

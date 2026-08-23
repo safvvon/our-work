@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "../../layouts/Header";
 import { Footer } from "../../layouts/Footer";
 import { AboutHero } from "./components/AboutHero";
-import { AboutTimeline } from "./components/AboutTimeline";
+import { AboutJourney } from "./components/AboutJourney";
 
 export default function AboutPage() {
   return (
@@ -13,7 +13,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col pt-20">
         <AboutHero />
-        <AboutTimeline />
+        <AboutJourney />
       </main>
 
       {/* Footer */}

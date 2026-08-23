@@ -5,9 +5,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
-  Linkedin,
-  Mail,
-  ExternalLink,
 } from "lucide-react";
 import { TEAM_MEMBERS, TeamMember } from "../data/teamData";
 import { soundManager } from "../utils/audio";
@@ -92,11 +89,19 @@ export const FuturisticTeamSection: React.FC = () => {
 
   const currentMember = filteredMembers[activeIndex] || filteredMembers[0];
 
-  // Helper to compute visible position index offset (-2, -1, 0, 1, 2)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Helper to compute visible position index offset (-4 to +4 for 9 members)
   const getOffset = (index: number) => {
     if (memberCount === 0) return 0;
     let diff = index - activeIndex;
-    // Handle wrap-around for smooth infinite carousel loops
     const half = Math.floor(memberCount / 2);
     if (diff > half) diff -= memberCount;
     if (diff < -half) diff += memberCount;
@@ -111,7 +116,7 @@ export const FuturisticTeamSection: React.FC = () => {
         setIsHovered(false);
         setIsCircleHovered(false);
       }}
-      className="relative w-full min-h-[920px] bg-[#09090B] text-white py-20 px-4 overflow-hidden select-none flex flex-col justify-between items-center"
+      className="relative w-full min-h-[920px] bg-[#09090B] text-white py-16 px-4 overflow-hidden select-none flex flex-col justify-between items-center"
     >
       {/* Background Animated Gradient Grid & Soft Floating Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -126,15 +131,15 @@ export const FuturisticTeamSection: React.FC = () => {
           <motion.div
             key={currentMember.id}
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.18, scale: 1 }}
+            animate={{ opacity: 0.22, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full blur-[140px] pointer-events-none"
             style={{ backgroundColor: currentMember.neonColor }}
           />
         )}
 
         {/* Soft floating ambient particles */}
-        {[...Array(12)].map((_, i) => (
+        {[...Array(14)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1.5 h-1.5 rounded-full bg-white/20"
@@ -156,7 +161,7 @@ export const FuturisticTeamSection: React.FC = () => {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center gap-10">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center gap-8">
         {/* HEADER SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -164,49 +169,68 @@ export const FuturisticTeamSection: React.FC = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-5xl px-4 flex flex-col items-center"
         >
-          {/* Top Pill Badge matching reference image */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#5CFF3D]/30 bg-[#5CFF3D]/10 text-[#5CFF3D] text-xs font-bold tracking-wider font-mono uppercase mb-5 shadow-[0_0_20px_rgba(92,255,61,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#5CFF3D] animate-ping" />
-            JOIN THE ELITE
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 font-sans leading-[1.05]">
-            Meet Team <br className="hidden sm:inline" />
-            <span className="text-[#5CFF3D] text-glow-green">INTELLEX.</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-4 drop-shadow-[0_0_30px_rgba(92,255,61,0.25)] font-sans leading-none">
+            Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#5CFF3D] to-white">Intellex Innovators</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto font-mono">
             Our dedicated team drives every innovation through creativity and expertise.
           </p>
         </motion.div>
 
-        {/* INFINITE CAROUSEL AREA */}
+        {/* 3D REVOLVING SPHERE CAROUSEL AREA */}
         <div
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
-          className="relative w-full h-[360px] sm:h-[420px] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-x"
+          className="relative w-full h-[400px] sm:h-[480px] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-x"
+          style={{ perspective: "1200px" }}
         >
-          <div className="relative w-full max-w-5xl h-full flex items-center justify-center">
+          {/* 3D Sci-Fi Globe Holographic Orbital Ring Background Elements */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <div className="w-[320px] h-[320px] sm:w-[580px] sm:h-[580px] rounded-full border border-dashed border-[#5CFF3D]/15 animate-[spin_60s_linear_infinite]" />
+            <div className="absolute w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] rounded-full border border-white/5 animate-[spin_40s_linear_infinite_reverse]" />
+          </div>
+
+          <div 
+            className="relative w-full max-w-5xl h-full flex items-center justify-center"
+            style={{ transformStyle: "preserve-3d" }}
+          >
             {filteredMembers.map((member, index) => {
               const offset = getOffset(index);
               const isCenter = offset === 0;
 
-              // Compute position parameters based on offset (-2 to +2)
-              if (Math.abs(offset) > 2) return null; // Hide far outside members
+              // Angular calculation on the 3D Sphere:
+              const angle = (offset / memberCount) * (2 * Math.PI);
+              
+              // Spherical Radii:
+              const rx = isMobile ? 150 : 330; // Horizontal orbit radius
+              const rz = isMobile ? 140 : 260; // Depth orbit radius (positive = front, negative = back)
+              const ry = isMobile ? 25 : 45;   // Vertical sphere curve tilt radius
 
-              const translateX = offset * 220; // 220px horizontal offset step on desktop
-              const scale = isCenter ? (isCircleHovered ? 1.05 : 1) : 0.7;
-              const opacity = isCenter ? 1 : Math.max(0.2, 0.6 - Math.abs(offset) * 0.2);
-              const zIndex = 30 - Math.abs(offset) * 10;
-              const blur = isCenter ? "blur(0px)" : "blur(4px)";
+              const translateX = Math.sin(angle) * rx;
+              const translateZ = Math.cos(angle) * rz; // cos(0) = max front position
+              const translateY = -Math.cos(angle) * ry + Math.abs(offset) * (isMobile ? 5 : 9);
+
+              // Depth normalization factor: 1 at front-center, 0 at back-far
+              const zFactor = Math.max(0, Math.min(1, (translateZ + rz) / (2 * rz)));
+
+              // 3D Overlapping visual parameters
+              const scale = isCenter 
+                ? (isCircleHovered ? 1.15 : 1.05) 
+                : 0.42 + zFactor * 0.45;
+              
+              const opacity = isCenter 
+                ? 1 
+                : 0.25 + zFactor * 0.55;
+              
+              const zIndex = Math.round(zFactor * 100);
+              const blurPx = isCenter ? 0 : (1 - zFactor) * 5;
 
               return (
                 <motion.div
                   key={member.id}
                   onClick={() => {
-                    if (!isCenter) {
-                      soundManager.playNavClick();
-                      setActiveIndex(index);
-                    }
+                    soundManager.playNavClick();
+                    setActiveIndex(index);
                   }}
                   onMouseEnter={() => {
                     if (isCenter) setIsCircleHovered(true);
@@ -216,27 +240,31 @@ export const FuturisticTeamSection: React.FC = () => {
                   }}
                   animate={{
                     x: translateX,
+                    y: translateY,
                     scale,
                     opacity,
                     zIndex,
-                    filter: blur,
+                    filter: `blur(${blurPx.toFixed(1)}px)`,
                   }}
                   transition={{
                     type: "spring",
-                    stiffness: 280,
-                    damping: 28,
-                    mass: 0.9,
+                    stiffness: 220,
+                    damping: 24,
+                    mass: 0.8,
                   }}
-                  style={{ willChange: "transform, opacity" }}
+                  style={{ 
+                    willChange: "transform, opacity, filter",
+                    transformStyle: "preserve-3d"
+                  }}
                   className={`absolute flex flex-col items-center justify-center ${
-                    isCenter ? "cursor-pointer" : "cursor-pointer hover:opacity-80"
+                    isCenter ? "cursor-pointer" : "cursor-pointer hover:opacity-90 transition-opacity"
                   }`}
                 >
                   <div className="relative flex items-center justify-center p-4">
                     {/* Active Employee Multi-Layer Animated Thin Neon Ring */}
                     {isCenter && (
                       <>
-                        {/* Layer 2: 10s Continuous Rotating Thin Gradient Ring (1.5px thickness) */}
+                        {/* Layer 2: Continuous Rotating Thin Gradient Ring */}
                         <motion.div
                           animate={{ rotate: 360 }}
                           transition={{
@@ -246,11 +274,11 @@ export const FuturisticTeamSection: React.FC = () => {
                           }}
                           className="absolute w-[190px] h-[190px] sm:w-[230px] sm:h-[230px] rounded-full p-[1.5px] bg-gradient-to-r from-[#00F0FF] via-[#A855F7] via-[#EC4899] via-[#EAB308] via-[#3B82F6] to-[#00F0FF] pointer-events-none"
                           style={{
-                            boxShadow: `0 0 20px ${member.neonColor}90, 0 0 45px ${member.neonColor}40`,
+                            boxShadow: `0 0 25px ${member.neonColor}90, 0 0 50px ${member.neonColor}40`,
                           }}
                         />
 
-                        {/* Layer 3: 2.5s Infinite Pulsing Radial Glow */}
+                        {/* Layer 3: Infinite Pulsing Radial Glow */}
                         <motion.div
                           animate={{
                             scale: [0.95, 1, 0.95],
@@ -263,18 +291,18 @@ export const FuturisticTeamSection: React.FC = () => {
                           }}
                           className="absolute w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] rounded-full pointer-events-none"
                           style={{
-                            boxShadow: `0 0 12px ${member.neonColor}, 0 0 35px ${member.neonColor}AA, 0 0 60px ${member.neonColor}55`,
+                            boxShadow: `0 0 14px ${member.neonColor}, 0 0 40px ${member.neonColor}AA, 0 0 70px ${member.neonColor}55`,
                           }}
                         />
                       </>
                     )}
 
-                    {/* Layer 1: Solid Circle Base & Photo Container */}
+                    {/* Layer 1: Solid Circle Base & Photo Container with Overlapping Shadow */}
                     <div
-                      className={`relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] rounded-full overflow-hidden border transition-transform duration-300 ${
+                      className={`relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] rounded-full overflow-hidden border transition-all duration-300 ${
                         isCenter
-                          ? "border-white/30 shadow-[0_0_25px_rgba(255,255,255,0.15)]"
-                          : "border-white/10 hover:border-white/30"
+                          ? "border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                          : "border-white/15 shadow-2xl hover:border-white/40"
                       }`}
                     >
                       <img
@@ -314,44 +342,6 @@ export const FuturisticTeamSection: React.FC = () => {
               <p className="text-xs sm:text-sm text-white/70 font-light max-w-lg leading-relaxed line-clamp-2 mt-1">
                 {currentMember.bio}
               </p>
-
-              {/* Action Buttons: LinkedIn, Email, Portfolio */}
-              <div className="flex items-center gap-4 mt-4">
-                {currentMember.linkedin && (
-                  <a
-                    href={currentMember.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => soundManager.playNavClick()}
-                    className="p-2.5 rounded-full bg-white/[0.05] border border-white/10 hover:bg-white/15 hover:border-white/40 text-white/80 hover:text-white transition-all duration-200 hover:scale-110 shadow-lg"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                )}
-                {currentMember.email && (
-                  <a
-                    href={currentMember.email}
-                    onClick={() => soundManager.playNavClick()}
-                    className="p-2.5 rounded-full bg-white/[0.05] border border-white/10 hover:bg-white/15 hover:border-white/40 text-white/80 hover:text-white transition-all duration-200 hover:scale-110 shadow-lg"
-                    aria-label="Email Address"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
-                )}
-                {currentMember.portfolio && (
-                  <a
-                    href={currentMember.portfolio}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => soundManager.playNavClick()}
-                    className="p-2.5 rounded-full bg-white/[0.05] border border-white/10 hover:bg-white/15 hover:border-white/40 text-white/80 hover:text-white transition-all duration-200 hover:scale-110 shadow-lg"
-                    aria-label="Personal Portfolio"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
             </motion.div>
           </AnimatePresence>
         </div>

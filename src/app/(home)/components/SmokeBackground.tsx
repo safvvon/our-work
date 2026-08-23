@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { soundManager } from "../../../utils/audio";
 
 export const SmokeBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -618,6 +619,12 @@ export const SmokeBackground: React.FC = () => {
       pointers[0].dy = (y - pointers[0].y) * 10.0;
       pointers[0].x = x;
       pointers[0].y = y;
+
+      // Play swoosh sound following cursor fluid swirl movement
+      const speed = Math.hypot(pointers[0].dx, pointers[0].dy);
+      if (speed > 12) {
+        soundManager.playSwoosh();
+      }
     };
 
     // Touch interactive handlers
@@ -645,6 +652,12 @@ export const SmokeBackground: React.FC = () => {
         pointers[i].dy = (touchY - pointers[i].y) * 10.0;
         pointers[i].x = touchX;
         pointers[i].y = touchY;
+
+        // Play swoosh sound following touch fluid swirl movement
+        const speed = Math.hypot(pointers[i].dx, pointers[i].dy);
+        if (speed > 12) {
+          soundManager.playSwoosh();
+        }
       }
     };
 
