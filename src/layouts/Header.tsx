@@ -11,10 +11,10 @@ export const Header: React.FC = () => {
 
   const leftNavItems = [
     { name: "Our Work", path: "/works" },
-    { name: "Our Team", path: "/team" },
   ];
 
   const rightNavItems = [
+    { name: "Our Team", path: "/team" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl font-sans select-none pointer-events-auto">
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl font-sans select-none pointer-events-auto">
         {/* Main Glass Capsule Wrapper */}
         <div className="glass-capsule rounded-full py-3.5 px-6 md:px-8 flex items-center justify-between relative overflow-visible">
           
