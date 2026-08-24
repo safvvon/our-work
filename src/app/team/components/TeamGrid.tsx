@@ -53,7 +53,7 @@ export const TeamGrid: React.FC = () => {
             WHO WE ARE
           </span>
           <h2 className="text-2xl md:text-4xl font-black uppercase font-sans">
-            Meet <span className="text-neonGreen text-glow-green">Team Intellex</span>
+            Meet Team <span className="text-neonGreen text-glow-green">INTELLEX.</span>
           </h2>
         </div>
 

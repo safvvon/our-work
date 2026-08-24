@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Header } from "../../layouts/Header";
 import { FilmRoll } from "./components/FilmRoll";
 import { LaptopMockup } from "./components/LaptopMockup";
 import { ProjectDetails } from "./components/ProjectDetails";
 import { PORTFOLIO_PROJECTS } from "../../constants/portfolioData";
-import { MousePointerClick } from "lucide-react";
+import { MousePointerClick, ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 export default function WorksPage() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -17,9 +18,91 @@ export default function WorksPage() {
 
   const activeProject = PORTFOLIO_PROJECTS[activeIdx];
 
+  // Scroll accumulators for global page mouse wheel control
+  const scrollAccumulator = useRef(0);
+  const scrollResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Touch drag tracking for mobile
+  const touchStartY = useRef(0);
+  const touchActive = useRef(false);
+
+  // Global mouse wheel event listener: Rotates reel without scrolling the page
+  useEffect(() => {
+    const handleGlobalWheel = (e: WheelEvent) => {
+      e.preventDefault();
+
+      scrollAccumulator.current += e.deltaY;
+
+      if (scrollResetTimer.current) clearTimeout(scrollResetTimer.current);
+      scrollResetTimer.current = setTimeout(() => {
+        scrollAccumulator.current = 0;
+      }, 400);
+
+      const threshold = 90;
+      if (scrollAccumulator.current > threshold) {
+        setActiveIdx((prev) => (prev < PORTFOLIO_PROJECTS.length - 1 ? prev + 1 : prev));
+        scrollAccumulator.current = 0;
+      } else if (scrollAccumulator.current < -threshold) {
+        setActiveIdx((prev) => (prev > 0 ? prev - 1 : prev));
+        scrollAccumulator.current = 0;
+      }
+    };
+
+    window.addEventListener("wheel", handleGlobalWheel, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", handleGlobalWheel);
+      if (scrollResetTimer.current) clearTimeout(scrollResetTimer.current);
+    };
+  }, []);
+
+  // Keyboard navigation listener (Up / Down / Left / Right Arrow keys)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        setActiveIdx((prev) => (prev < PORTFOLIO_PROJECTS.length - 1 ? prev + 1 : prev));
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        setActiveIdx((prev) => (prev > 0 ? prev - 1 : prev));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Mobile Touch Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchActive.current = true;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchActive.current) return;
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchStartY.current - touchY;
+    const swipeThreshold = 45;
+
+    if (deltaY > swipeThreshold) {
+      setActiveIdx((prev) => (prev < PORTFOLIO_PROJECTS.length - 1 ? prev + 1 : prev));
+      touchActive.current = false;
+    } else if (deltaY < -swipeThreshold) {
+      setActiveIdx((prev) => (prev > 0 ? prev - 1 : prev));
+      touchActive.current = false;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchActive.current = false;
+  };
+
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white flex flex-col font-sans overflow-x-hidden selection:bg-neonGreen selection:text-black">
-      
+    <div
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className="relative h-screen h-dvh w-full bg-[#050505] text-white flex flex-col justify-between font-sans overflow-hidden select-none selection:bg-neonGreen selection:text-black"
+    >
       {/* Background Ambience and Grids */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
       
@@ -42,7 +125,7 @@ export default function WorksPage() {
           {/* Scroll Indicator Prompt */}
           <div className="hidden lg:flex absolute bottom-[35px] left-[15%] items-center gap-2 text-white/30 text-[10px] tracking-widest font-mono uppercase select-none pointer-events-none">
             <MousePointerClick className="w-3.5 h-3.5 text-neonGreen animate-bounce" />
-            <span>Scroll to Rotate Reel</span>
+            <span>Scroll anywhere to rotate reel</span>
           </div>
         </div>
       </div>

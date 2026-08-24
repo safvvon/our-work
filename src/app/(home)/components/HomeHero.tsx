@@ -4,7 +4,11 @@ import React from "react";
 import { SmokeBackground } from "./SmokeBackground";
 import { TextPressure } from "../../../components/TextPressure";
 
-export const HomeHero: React.FC = () => {
+interface HomeHeroProps {
+  onOpenServices?: () => void;
+}
+
+export const HomeHero: React.FC<HomeHeroProps> = ({ onOpenServices }) => {
   return (
     <section className="relative min-h-screen flex-1 flex flex-col items-center justify-center text-center px-6 md:px-12 pt-28 sm:pt-36 pb-16 overflow-hidden select-none font-sans z-10">
       
@@ -13,7 +17,7 @@ export const HomeHero: React.FC = () => {
 
       <div className="max-w-4xl mx-auto flex flex-col items-center justify-center relative z-10 w-full">
         {/* H1 Title with Dynamic Text Pressure */}
-        <div className="relative w-full h-[80px] sm:h-[130px] md:h-[200px] flex items-center justify-center py-4 overflow-visible">
+        <div className="relative w-full h-[70px] sm:h-[110px] md:h-[150px] flex items-center justify-center py-2 overflow-visible">
           <TextPressure
             text="INTELLEX"
             fontFamily="Roboto Flex"

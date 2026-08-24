@@ -167,12 +167,12 @@ export const FuturisticTeamSection: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-5xl px-4"
+          className="text-center max-w-5xl px-4 flex flex-col items-center"
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-4 drop-shadow-[0_0_30px_rgba(92,255,61,0.25)] font-sans leading-none">
             Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#5CFF3D] to-white">Intellex Innovators</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto font-mono">
             Our dedicated team drives every innovation through creativity and expertise.
           </p>
         </motion.div>
